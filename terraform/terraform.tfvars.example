@@ -1,0 +1,8 @@
+# Kubernetes Configuration
+kubeconfig_path = "~/.kube/config"
+domain_name     = "portfolio.yourdomain.com"
+image_tag       = "latest"
+
+# AWS Configuration (if using EKS)
+aws_region   = "us-west-2"
+cluster_name = "portfolio-cluster"
