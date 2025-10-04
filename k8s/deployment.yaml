@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: portfolio-app
+  namespace: portfolio
   labels:
     app: portfolio
 spec:
@@ -14,11 +15,22 @@ spec:
       labels:
         app: portfolio
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101
+        fsGroup: 101
       containers:
       - name: portfolio
         image: maheshdk4/portfolio:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
         resources:
           requests:
             memory: "64Mi"
